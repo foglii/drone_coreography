@@ -86,7 +86,7 @@ def move_linear_simple(scf):
 def take_off_simple(scf):
      with PositionHlCommander(scf, default_z=DEFAULT_HEIGHT, controller=PositionHlCommander.CONTROLLER_MELLINGER) as pc:
         time.sleep(3)
-        pc.land(0.0, 2.0)
+        pc.takeoff(0.5, 2.0)
         time.sleep(1)
 
 
@@ -132,6 +132,6 @@ if __name__ == '__main__':
         logconf.start()
 
         #take_off_simple(scf)
-         move_linear_simple(scf)
+        move_linear_simple(scf)
         # move_box_limit(scf)
         logconf.stop()
