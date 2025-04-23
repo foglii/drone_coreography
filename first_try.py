@@ -34,7 +34,7 @@ def move_box_limit(scf, position_estimate):
     with PositionHlCommander(scf, default_z=DEFAULT_HEIGHT, controller=PositionHlCommander.CONTROLLER_MELLINGER) as pc:
         print("Started PositionHlCommander control")
 
-        pc.takeoff(DEFAULT_HEIGHT, 2.0)
+       
         time.sleep(3)
 
         while True:
@@ -56,9 +56,8 @@ def move_box_limit(scf, position_estimate):
             pc.go_to(target_x, target_y, DEFAULT_HEIGHT, 0.0)
             time.sleep(0.5)  # Tune this for responsiveness
 
-        # Not reached normally, but you could add landing logic on interrupt
-         pc.land(0.0, 2.0)
-         time.sleep(3)
+       
+       
 
 
 
