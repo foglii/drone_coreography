@@ -3,7 +3,7 @@ import logging
 import sys
 import time
 from threading import Event
-
+import math
 import cflib.crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
@@ -23,10 +23,9 @@ logging.basicConfig(level=logging.ERROR)
 position_estimate = [0, 0]
 
 
-import time
-from cflib.crazyflie.high_level_commander import PositionHlCommander
 
-BOX_LIMIT = 0.5  # Set to your desired bounding box in meters
+
+BOX_LIMIT = 1.5  # Set to your desired bounding box in meters
 DEFAULT_HEIGHT = 0.5
 
 # position_estimate must be updated externally, e.g., via Crazyflie callbacks or estimator
@@ -66,32 +65,27 @@ def move_box_limit(scf, position_estimate):
 def move_linear_simple(scf):
     with PositionHlCommander(scf, default_z=DEFAULT_HEIGHT, controller=PositionHlCommander.CONTROLLER_MELLINGER) as pc:
         time.sleep(1)
-        # Take off
-        pc.takeoff(DEFAULT_HEIGHT, 2.0)
-        time.sleep(3)
+
 
         # Move forward (along +Y axis, 0.5m)
-        pc.go_to(0, 0.5, DEFAULT_HEIGHT, 0)
+        pc.go_to(0.5, 0, DEFAULT_HEIGHT, 0.1)
         time.sleep(2)
+        for it=0:pi/8:2*pi:
+            pc.go_to(0.5*math.cos(it),0.5*math.sin(it),DEFAULT_HEIGHT,0.1);
+            time.sleep(1);
 
-        # Turn left 180 degrees
-        pc.go_to(0, 0.5, DEFAULT_HEIGHT, 180)
-        time.sleep(2)
 
         # Move forward again (which is now in the -Y direction due to the yaw)
-        pc.go_to(0, 0.0, DEFAULT_HEIGHT, 180)
         time.sleep(2)
 
 
 def take_off_simple(scf):
      with PositionHlCommander(scf, default_z=DEFAULT_HEIGHT, controller=PositionHlCommander.CONTROLLER_MELLINGER) as pc:
         time.sleep(3)
-        pc.takeoff(0.5, 2.0)
-        time.sleep(1)
 
 
 def log_pos_callback(timestamp, data, logconf):
-    print(data)
+    # print(data)
     position_estimate[0] = data['stateEstimate.x']
     position_estimate[1] = data['stateEstimate.y']
 
