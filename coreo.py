@@ -110,7 +110,16 @@ def upload_trajectory(cf, trajectory_id, trajectory):
         print(e)
 
 #####
+def activate_led_bit_mask(scf):
+    scf.cf.param.set_value('led.bitmask', 255)
 
+def deactivate_led_bit_mask(scf):
+    scf.cf.param.set_value('led.bitmask', 0)
+
+def light_check(scf):
+    activate_led_bit_mask(scf)
+    time.sleep(2)
+    deactivate_led_bit_mask(scf)
 
 def wait_for_param_download(scf):
     while not scf.cf.param.is_updated:
@@ -207,34 +216,41 @@ if __name__ == '__main__':
 
     factory = CachedCfFactory(rw_cache='./cache')
     with Swarm(uris, factory=factory) as swarm:
-        # If the copters are started in their correct positions this is
-        # probably not needed. The Kalman filter will have time to converge
-        # any way since it takes a while to start them all up and connect. We
-        # keep the code here to illustrate how to do it.
+        try:
+            # If the copters are started in their correct positions this is
+            # probably not needed. The Kalman filter will have time to converge
+            # any way since it takes a while to start them all up and connect. We
+            # keep the code here to illustrate how to do it.
+            
+
+            # The current values of all parameters are downloaded as a part of the
+            # connections sequence. Since we have 10 copters this is clogging up
+            # communication and we have to wait for it to finish before we start
+            # flying.
+            swarm.parallel_safe(light_check)
+
+            durat=swarm.parallel_safe(upload_trajectory,args_dict=seq_args_)
+            
+            print(durat)
+            #swarm.parallel(wait_for_param_download)
+            time.sleep(5)
+
+            swarm.reset_estimators()
+        
         
 
-        # The current values of all parameters are downloaded as a part of the
-        # connections sequence. Since we have 10 copters this is clogging up
-        # communication and we have to wait for it to finish before we start
-        # flying.
-        durat=swarm.parallel(upload_trajectory,args_dict=seq_args_)
+            swarm.parallel_safe(activate_mellinger_controller)
+            
+            
         
-        print(durat)
-        #swarm.parallel(wait_for_param_download)
-        time.sleep(5)
+            
+            
+            swarm.parallel_safe(arm)
+            #swarm.parallel(run_sequence,args_dict=seq_args_)
+            swarm.parallel_safe(run_sequencee,args_dict=seq_args_)
 
-        swarm.reset_estimators()
-       
-       
+        # swarm.parallel(run_sequence, args_dict=seq_args)
+        except Exception as e:
+                print(f"Error occurred: {e}")
+                swarm.parallel_safe(emergency_land)
 
-        swarm.parallel(activate_mellinger_controller)
-        
-        
-       
-        
-        
-        swarm.parallel(arm)
-        #swarm.parallel(run_sequence,args_dict=seq_args_)
-        swarm.parallel(run_sequencee,args_dict=seq_args_)
-
-       # swarm.parallel(run_sequence, args_dict=seq_args)
