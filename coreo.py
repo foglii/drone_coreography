@@ -32,10 +32,10 @@ drone1=[[2.220000,0.601736,-0.000000,-0.000000,-2.538160,2.887907,-1.364690,0.32
 [2.220000,0.666289,0.194032,-0.094619,0.748635,-0.850067,0.370665,-0.085028,0.009598,0.107665,0.695108,-0.969239,-0.568407,1.459333,-0.856320,0.207520,-0.017940,0.784298,0.179999,0.089367,-0.800775,0.198136,0.667115,-0.438641,0.075465,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
 [2.220000,0.533280,-0.811114,0.198256,1.021141,-1.531615,1.305821,-0.544024,0.082685,0.000545,-0.035772,0.000364,0.346042,-0.641545,0.468712,-0.154157,0.019030,1.194144,-0.251906,-0.755209,2.007084,-3.981759,3.546720,-1.357258,0.186850,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]]
 # duration,x^0,x^1,x^2,x^3,x^4,x^5,x^6,x^7,y^0,y^1,y^2,y^3,y^4,y^5,y^6,y^7,z^0,z^1,z^2,z^3,z^4,z^5,z^6,z^7,yaw^0,yaw^1,yaw^2,yaw^3,yaw^4,yaw^5,yaw^6,yaw^7
-drone2=[[2.220000,-0.391176,0.000000,0.000000,-3.859514,7.865495,-5.667046,1.783492,-0.209816,0.466956,0.000000,-0.000000,-5.060231,7.644619,-4.649587,1.333722,-0.149576,0.500787,-0.000000,-0.000000,-0.071294,0.195404,-0.192952,0.081292,-0.012366,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
-[2.220000,0.587348,0.126068,-0.948018,-1.411955,2.507941,-1.432781,0.393135,-0.043989,-0.025023,1.235716,0.189690,-1.637726,1.225300,-0.601280,0.194566,-0.026057,0.507461,0.002586,-0.193102,-0.570055,2.418365,-2.310247,0.869102,-0.115866,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
-[2.220000,-0.225074,1.124552,0.469750,-1.124637,0.580610,-0.366502,0.166296,-0.026104,-0.559602,-0.420450,1.111004,0.033437,0.047451,-0.336989,0.150958,-0.018693,0.737662,0.077432,0.201197,-1.275338,2.019921,-1.426829,0.471485,-0.059184,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
-[2.220000,-0.408449,-0.589503,1.078279,0.166197,-0.882384,0.481934,-0.114549,0.011575,0.432766,-0.666582,-0.300980,0.988090,-0.459676,-0.067126,0.089413,-0.015804,0.784298,0.179999,0.089367,-0.800775,0.198136,0.667115,-0.438641,0.075465,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]
+drone2=[[2.220000,-0.391176,0.000000,0.000000,-3.859514,7.865495,-5.667046,1.783492,-0.209816,0.466956,0.000000,-0.000000,-5.060231,7.644619,-4.649587,1.333722,-0.149576,0.500787,-0.000000,-0.000000,-0.071294,0.195404,-0.192952,0.081292,-0.012366,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
+[2.220000,0.587348,0.126068,-0.948018,-1.411955,2.507941,-1.432781,0.393135,-0.043989,-0.025023,1.235716,0.189690,-1.637726,1.225300,-0.601280,0.194566,-0.026057,0.507461,0.002586,-0.193102,-0.570055,2.418365,-2.310247,0.869102,-0.115866,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
+[2.220000,-0.225074,1.124552,0.469750,-1.124637,0.580610,-0.366502,0.166296,-0.026104,-0.559602,-0.420450,1.111004,0.033437,0.047451,-0.336989,0.150958,-0.018693,0.737662,0.077432,0.201197,-1.275338,2.019921,-1.426829,0.471485,-0.059184,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
+[2.220000,-0.408449,-0.589503,1.078279,0.166197,-0.882384,0.481934,-0.114549,0.011575,0.432766,-0.666582,-0.300980,0.988090,-0.459676,-0.067126,0.089413,-0.015804,0.784298,0.179999,0.089367,-0.800775,0.198136,0.667115,-0.438641,0.075465,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000],
 [2.220000,-0.666490,-0.794038,0.193515,0.856361,-1.213061,1.068827,-0.465242,0.072890,-0.001066,0.021205,0.022676,-0.272329,0.459713,-0.324021,0.104534,-0.012750,1.194144,-0.251906,-0.755209,2.007084,-3.981759,3.546720,-1.357258,0.186850,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000]]
 
 # duration,x^0,x^1,x^2,x^3,x^4,x^5,x^6,x^7,y^0,y^1,y^2,y^3,y^4,y^5,y^6,y^7,z^0,z^1,z^2,z^3,z^4,z^5,z^6,z^7,yaw^0,yaw^1,yaw^2,yaw^3,yaw^4,yaw^5,yaw^6,yaw^7
@@ -65,6 +65,19 @@ figure8_3=[[
 seq_args_ = {
     URI1: [1,drone1],
     URI2: [2,drone2],
+   # URI3: [3,figure8_3],
+   # URI4: [sequence4],
+    #URI5: [sequence5],
+    #URI6: [sequence6],
+    #URI7: [sequence7],
+    #URI8: [sequence8],
+    #URI9: [sequence9],
+    #URI10: [sequence10],
+}
+
+seq_argss_ = {
+    URI1: [1,11.1],
+    URI2: [2,11.1],
    # URI3: [3,figure8_3],
    # URI4: [sequence4],
     #URI5: [sequence5],
@@ -120,24 +133,35 @@ def upload_trajectory(scf, trajectory_id, trajectory):
 
         scf.cf.high_level_commander.define_trajectory(trajectory_id, 0, len(trajectory))
         print(f"[{scf.cf.link_uri}] Trajectory uploaded ({len(trajectory)} segments, {total_duration:.1f}s)")
+        print(total_duration)
         return total_duration
 
     except Exception as e:
         print(f"[{scf.cf.link_uri}] ERROR uploading trajectory: {e}")
+        
 
-
-def run_trajectory(scf, trajectory_id, duration):
-    """Execute a defined trajectory"""
+def landd(scf):
     commander = scf.cf.high_level_commander
-
-    commander.takeoff(0.5, 2.0)
-    time.sleep(3.0)
-    commander.start_trajectory(trajectory_id, 1.0, True)
-    print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration:.1f}s")
-    time.sleep(duration + 2)
-    commander.land(0.0, 2.0)
-    time.sleep(3.0)
+    commander.land(0.0,4.0)
+    time.sleep(4.0)
     commander.stop()
+def run_trajectory(scf, trajectory_id, duration):
+    try:
+        print('run_trajectory function')
+        """Execute a defined trajectory"""
+        commander = scf.cf.high_level_commander
+
+        commander.takeoff(0.5, 2.0)
+        time.sleep(3.0)
+        commander.start_trajectory(trajectory_id, 1.0, False)
+        '''print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration:.1f}s")'''
+        time.sleep(duration)
+        commander.land(0.0, 2.0)
+        time.sleep(3.0)
+        commander.stop()
+    except Exception as e:
+        print(f"[{scf.cf.link_uri}] ERROR uploading trajectory: {e}")
+        commander.land(0.0, 2.0)
 
 
 def wait_for_param_download(scf):
@@ -166,22 +190,23 @@ if __name__ == '__main__':
             swarm.parallel_safe(activate_mellinger_controller)
 
             # Upload trajectories to each Crazyflie
-            durations = swarm.parallel_safe(upload_trajectory, args_dict=seq_args_)
+            durations = swarm.parallel(upload_trajectory, args_dict=seq_args_)
+            durations=[11.1,11.1]
             print("Durations:", durations)
-
+              
             # Wait before flight
             time.sleep(3.0)
 
             # Run trajectories
-            run_args = {uri: [seq_args_[uri][0], durations[uri]] for uri in seq_args_}
-            swarm.parallel_safe(run_trajectory, args_dict=run_args)
+            '''run_args = {uri: [seq_args_[uri][0], durations[uri]] for uri in seq_args_}'''
+            swarm.parallel_safe(run_trajectory, args_dict=seq_argss_)
 
         except KeyboardInterrupt:
             print("Emergency stop triggered by user.")
-            swarm.emergency_stop()
+            swarm.parallel_safe(landd)
         except Exception as e:
             print(f"Error: {e}")
-            swarm.emergency_stop()
+            swarm.parallel_safe(landd)
 
 """ def activate_mellinger_controller(cf):
     cf.param.set_value('stabilizer.controller', '2')
