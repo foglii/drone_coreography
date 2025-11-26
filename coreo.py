@@ -188,9 +188,9 @@ drone6=[[3.216667,-0.119967,-0.000000,0.000000,-3.237654,4.376496,-2.169403,0.47
 
 
 seq_args_ = {
-   # URI1: [1,drone1],
-   #URI2: [2,drone2],
-   # URI3: [3,drone3],
+    URI1: [1,drone1],
+    URI2: [2,drone2],
+    URI3: [3,drone3],
     URI4: [4,drone4],
     URI5: [5,drone5],
     #URI6: [6,drone6],
@@ -201,11 +201,11 @@ seq_args_ = {
 }
 
 seq_argss_ = {
-    #URI1: [1,47.9],
-   # URI2: [2,47.9],
-   # URI3: [3,47.9],
-    URI4: [4,47.9],
-    URI5: [5,47.9],
+    URI1: [1,59.35],
+    URI2: [2,59.35],
+    URI3: [3,59.35],
+    URI4: [4,59.35],
+    URI5: [5,59.35],
     #URI6: [6,11.1],
     #URI7: [sequence7],
     #URI8: [sequence8],
@@ -215,9 +215,9 @@ seq_argss_ = {
 
 # List of URIs, comment the one you do not want to fly
 uris = {
-    #URI1,
-   # URI2,
-   # URI3,
+    URI1,
+    URI2,
+    URI3,
     URI4,
     URI5,
    # URI6,
