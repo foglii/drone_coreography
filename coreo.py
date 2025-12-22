@@ -31,37 +31,42 @@ URI6 = 'radio://0/80/2M/E7E7E7E7E4'
 # drone5 = [list(map(float, row)) for row in __import__("csv").reader(open("drone5.csv", encoding="utf-8-sig"))]
 # drone6 = [list(map(float, row)) for row in __import__("csv").reader(open("drone6.csv", encoding="utf-8-sig"))]
 
-drone1= uav_trajectory.Trajectory()
-drone1.loadcsv('drone1.csv')
-drone2= uav_trajectory.Trajectory()
-drone2.loadcsv('drone2.csv')
-drone3= uav_trajectory.Trajectory()
-drone3.loadcsv('drone3.csv')
-drone4= uav_trajectory.Trajectory()
-drone4.loadcsv('drone4.csv')
-drone5= uav_trajectory.Trajectory()
-drone5.loadcsv('drone5.csv')
-drone6= uav_trajectory.Trajectory()
-drone6.loadcsv('drone6.csv')
-
+dronee1= uav_trajectory.Trajectory()
+dronee1.loadcsv('drone1.csv')
+dronee2= uav_trajectory.Trajectory()
+dronee2.loadcsv('drone2.csv')
+dronee3= uav_trajectory.Trajectory()
+dronee3.loadcsv('drone3.csv')
+dronee4= uav_trajectory.Trajectory()
+dronee4.loadcsv('drone4.csv')
+dronee5= uav_trajectory.Trajectory()
+dronee5.loadcsv('drone5.csv')
+dronee6= uav_trajectory.Trajectory()
+dronee6.loadcsv('drone6.csv')
+drone1 = np.loadtxt('drone1.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone2 = np.loadtxt('drone2.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone3 = np.loadtxt('drone3.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone4 = np.loadtxt('drone4.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone5 = np.loadtxt('drone5.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone6 = np.loadtxt('drone6.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 
 
 seq_args_ = {
-    URI1: [1,drone1],
+    #URI1: [1,drone1],
     URI2: [2,drone2],
-    URI3: [3,drone3],
+    #URI3: [3,drone3],
     URI4: [4,drone4],
-    URI5: [5,drone5],
+    #URI5: [5,drone5],
     #URI6: [6,drone6],
     
 }
 
 seq_argss_ = {
-    URI1: [1,drone1.duration],
-    URI2: [2,drone2.duration],
-    URI3: [3,drone3.duration],
-    URI4: [4,drone4.duration],
-    URI5: [5,drone5.duration],
+    #URI1: [1,dronee1.duration],
+    URI2: [2,dronee2.duration],
+    #URI3: [3,dronee3.duration],
+    URI4: [4,dronee4.duration],
+    #URI5: [5,dronee5.duration],
     #URI6: [6,11.1],
     #URI7: [sequence7],
     #URI8: [sequence8],
@@ -71,11 +76,11 @@ seq_argss_ = {
 
 # List of URIs, comment the one you do not want to fly
 uris = {
-    URI1,
+  #  URI1,
     URI2,
-    URI3,
+   # URI3,
     URI4,
-    URI5,
+   # URI5,
    # URI6,
    # URI7,
    # URI8,
