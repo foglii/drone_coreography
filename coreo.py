@@ -1,6 +1,6 @@
 import time
 
-
+import numpy as np
 import cflib.crtp
 from cflib.crazyflie.swarm import CachedCfFactory
 from cflib.crazyflie.swarm import Swarm
@@ -16,7 +16,7 @@ from cflib.utils import uri_helper
 
 # Change uris and sequences according to your setup
 # URIs in a swarm using the same radio must also be on the same channel
-URI1 = 'radio://0/80/2M/E7E7E7E7E6'
+URI1 = 'radio://0/80/2M/E7E7E7E7E5'
 URI2 = 'radio://0/80/2M/E7E7E7E7E7'
 URI3 = 'radio://0/80/2M/E7E7E7E7E8'
 URI4 = 'radio://0/80/2M/E7E7E7E7E9'
@@ -30,7 +30,8 @@ URI6 = 'radio://0/80/2M/E7E7E7E7E4'
 # drone4 = [list(map(float, row)) for row in __import__("csv").reader(open("drone4.csv", encoding="utf-8-sig"))]
 # drone5 = [list(map(float, row)) for row in __import__("csv").reader(open("drone5.csv", encoding="utf-8-sig"))]
 # drone6 = [list(map(float, row)) for row in __import__("csv").reader(open("drone6.csv", encoding="utf-8-sig"))]
-
+global iterr
+iterr= 1
 dronee1= uav_trajectory.Trajectory()
 dronee1.loadcsv('drone1.csv')
 dronee2= uav_trajectory.Trajectory()
@@ -43,29 +44,45 @@ dronee5= uav_trajectory.Trajectory()
 dronee5.loadcsv('drone5.csv')
 dronee6= uav_trajectory.Trajectory()
 dronee6.loadcsv('drone6.csv')
-drone1 = np.loadtxt('drone1.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+droneee1 = np.loadtxt('drone1.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone11=droneee1.tolist()
 drone2 = np.loadtxt('drone2.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
-drone3 = np.loadtxt('drone3.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
-drone4 = np.loadtxt('drone4.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone2=np.asarray(drone2,dtype=float)
+droneee3 = np.loadtxt('drone3.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone33=droneee3.tolist()
+drone3=drone11[:len(drone33)//2]
+drone3_2=drone11[len(drone33)//2+1:]
+droneee4 = np.loadtxt('drone4.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone44=droneee4.tolist()
+drone4=drone44[:len(drone44)//2]
+drone4_2=drone44[len(drone44)//2+1:]
 drone5 = np.loadtxt('drone5.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone6 = np.loadtxt('drone6.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
-
-
+drone1=drone11[:len(drone11)//2]
+drone1_2=drone11[len(drone11)//2:]
 seq_args_ = {
     #URI1: [1,drone1],
-    URI2: [2,drone2],
-    #URI3: [3,drone3],
+   # URI2: [2,drone2],
+    URI3: [3,drone3],
     URI4: [4,drone4],
     #URI5: [5,drone5],
     #URI6: [6,drone6],
     
 }
-
+seq_args_2 = {
+     #URI1: [1,drone1_2],
+     #URI2: [2,drone2_2],
+     URI3: [3,drone3_2],
+     URI4: [4,drone4_2],
+    #URI5: [5,drone5],
+    #URI6: [6,drone6],
+    
+}
 seq_argss_ = {
-    #URI1: [1,dronee1.duration],
-    URI2: [2,dronee2.duration],
-    #URI3: [3,dronee3.duration],
-    URI4: [4,dronee4.duration],
+    #URI1: [1,dronee1.duration/2],
+     #URI2: [2,60],
+    URI3: [3,dronee3.duration/2],
+    URI4: [4,dronee4.duration/2],
     #URI5: [5,dronee5.duration],
     #URI6: [6,11.1],
     #URI7: [sequence7],
@@ -76,10 +93,10 @@ seq_argss_ = {
 
 # List of URIs, comment the one you do not want to fly
 uris = {
-  #  URI1,
-    URI2,
-   # URI3,
-    URI4,
+   #URI1,
+     #URI2,
+    URI3,
+     URI4,
    # URI5,
    # URI6,
    # URI7,
@@ -115,6 +132,7 @@ def upload_trajectory(scf, trajectory_id, trajectory):
 
         if not trajectory_mem.write_data_sync():
             print(f"[{scf.cf.link_uri}] Upload failed.")
+            print(trajectory)
             return
 
         scf.cf.high_level_commander.define_trajectory(trajectory_id, 0, len(trajectory))
@@ -124,6 +142,7 @@ def upload_trajectory(scf, trajectory_id, trajectory):
 
     except Exception as e:
         print(f"[{scf.cf.link_uri}] ERROR uploading trajectory: {e}")
+        print(trajectory)
         
 
 def landd(scf):
@@ -136,15 +155,18 @@ def run_trajectory(scf, trajectory_id, duration):
         print('run_trajectory function')
         """Execute a defined trajectory"""
         commander = scf.cf.high_level_commander
-
-        commander.takeoff(0.5, 2.0)
-        time.sleep(3.0)
+        if iterr==1:
+            commander.takeoff(0.5, 2.0)
+            time.sleep(3.0)
         commander.start_trajectory(trajectory_id, 1.5, False)
-        '''print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration:.1f}s")'''
-        time.sleep(duration)
-        commander.land(0.0, 2.0)
-        time.sleep(3.0)
-        commander.stop()
+        print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration:.1f}s")
+        time.sleep(duration+1)
+       
+        if iterr==2:
+                commander.land(0.0, 2.0)
+                time.sleep(3.0)
+                commander.stop()
+        else: commander.up(0.2,0.1)
     except Exception as e:
         print(f"[{scf.cf.link_uri}] ERROR uploading trajectory: {e}")
         commander.land(0.0, 2.0)
@@ -176,7 +198,7 @@ if __name__ == '__main__':
             swarm.parallel_safe(activate_mellinger_controller)
 
             # Upload trajectories to each Crazyflie
-            durations = swarm.parallel(upload_trajectory, args_dict=seq_args_)
+            durations = swarm.parallel_safe(upload_trajectory, args_dict=seq_args_)
            # durations=[30.3,30.3,30.3,30.3]
            # print("Durations:", durations)
               
@@ -184,14 +206,20 @@ if __name__ == '__main__':
             time.sleep(3.0)
 
             # Run trajectories
-            '''run_args = {uri: [seq_args_[uri][0], durations[uri]] for uri in seq_args_}'''
+            #run_args = {uri: [seq_args_[uri][0], durations[uri]] for uri in seq_args_}
+            print("ciao0")
             swarm.parallel_safe(run_trajectory, args_dict=seq_argss_)
-
+            print("ciao")
+            iterr= iterr+1
+            swarm.parallel_safe(wait_for_param_download)
+            
+            durations = swarm.parallel_safe(upload_trajectory, args_dict=seq_args_2)
+            swarm.parallel_safe(run_trajectory, args_dict=seq_argss_)
         except KeyboardInterrupt:
             print("Emergency stop triggered by user.")
             swarm.parallel_safe(landd)
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Errorr: {e}")
             swarm.parallel_safe(landd)
 
 """ def activate_mellinger_controller(cf):
