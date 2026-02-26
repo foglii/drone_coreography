@@ -16,12 +16,12 @@ from cflib.utils import uri_helper
 
 # Change uris and sequences according to your setup
 # URIs in a swarm using the same radio must also be on the same channel
-URI1 = 'radio://0/100/2M/E7E7E7E7E6'
-URI2 = 'radio://0/100/2M/E7E7E7E7E7'
+#URI1 = 'radio://0/100/2M/E7E7E7E7E6'
+URI2 = 'radio://0/100/2M/E7E7E7E7E6'
 URI3 = 'radio://0/100/2M/E7E7E7E7E8'
 URI4 = 'radio://0/100/2M/E7E7E7E7E9'
 URI5 = 'radio://0/100/2M/E7E7E7E7E5'
-URI6 = 'radio://0/100/2M/E7E7E7E7E4'
+#URI6 = 'radio://0/100/2M/E7E7E7E7E4'
 
 global iterr
 iterr= 1
@@ -63,8 +63,8 @@ drone6_2=drone6_txt[len(drone6_txt)//2+1:].tolist()
 drone6_duration = [np.sum(np.array(drone6)[:,0]), np.sum(np.array(drone6_2)[:,0])]
 
 seq_args_ = {
-    URI1: [1,drone1],
-    #URI2: [2,drone2],
+    #URI1: [1,drone1],
+    URI2: [2,drone2],
     URI3: [3,drone3],
     URI4: [4,drone4],
     URI5: [5,drone5],
@@ -72,17 +72,17 @@ seq_args_ = {
     
 }
 seq_args_2 = {
-     URI1: [1,drone1_2],
-     #URI2: [2,drone2_2],
+     #URI1: [1,drone1_2],
+     URI2: [2,drone2_2],
      URI3: [3,drone3_2],
      URI4: [4,drone4_2],
-    URI5: [5,drone5_2],
+     URI5: [5,drone5_2],
     #URI6: [6,drone6_2],
     
 }
 seq_argss_ = {
-    URI1: [1,drone1_duration[0]],
-    #URI2: [2,drone2_duration[0]],
+   # URI1: [1,drone1_duration[0]],
+    URI2: [2,drone2_duration[0]],
     URI3: [3,drone3_duration[0]],
     URI4: [4,drone4_duration[0]],
     URI5: [5,drone5_duration[0]],
@@ -90,8 +90,8 @@ seq_argss_ = {
 
 }
 seq_argss_2 = {
-    URI1: [1,drone1_duration[1]],
-    #URI2: [2,drone2_duration[1]],
+   # URI1: [1,drone1_duration[1]],
+    URI2: [2,drone2_duration[1]],
     URI3: [3,drone3_duration[1]],
     URI4: [4,drone4_duration[1]],
     URI5: [5,drone5_duration[1]],
@@ -101,10 +101,10 @@ seq_argss_2 = {
 
 # List of URIs, comment the one you do not want to fly
 uris = {
-   URI1,
-    #URI2,
+  # URI1,
+    URI2,
     URI3,
-     URI4,
+    URI4,
     URI5,
    # URI6,
 
