@@ -16,12 +16,12 @@ from cflib.utils import uri_helper
 
 # Change uris and sequences according to your setup
 # URIs in a swarm using the same radio must also be on the same channel
-URI1 = 'radio://0/80/2M/E7E7E7E7E6'
-URI2 = 'radio://0/80/2M/E7E7E7E7E7'
-URI3 = 'radio://0/80/2M/E7E7E7E7E8'
-URI4 = 'radio://0/80/2M/E7E7E7E7E9'
-URI5 = 'radio://0/80/2M/E7E7E7E7E5'
-URI6 = 'radio://0/80/2M/E7E7E7E7E4'
+URI1 = 'radio://0/100/2M/E7E7E7E7E6'
+URI2 = 'radio://0/100/2M/E7E7E7E7E7'
+URI3 = 'radio://0/100/2M/E7E7E7E7E8'
+URI4 = 'radio://0/100/2M/E7E7E7E7E9'
+URI5 = 'radio://0/100/2M/E7E7E7E7E5'
+URI6 = 'radio://0/100/2M/E7E7E7E7E4'
 
 global iterr
 iterr= 1
@@ -64,48 +64,48 @@ drone6_duration = [np.sum(np.array(drone6)[:,0]), np.sum(np.array(drone6_2)[:,0]
 
 seq_args_ = {
     URI1: [1,drone1],
-    URI2: [2,drone2],
+    #URI2: [2,drone2],
     URI3: [3,drone3],
     URI4: [4,drone4],
-   # URI5: [5,drone5],
+    URI5: [5,drone5],
     #URI6: [6,drone6],
     
 }
 seq_args_2 = {
      URI1: [1,drone1_2],
-     URI2: [2,drone2_2],
+     #URI2: [2,drone2_2],
      URI3: [3,drone3_2],
      URI4: [4,drone4_2],
-    #URI5: [5,drone5_2],
+    URI5: [5,drone5_2],
     #URI6: [6,drone6_2],
     
 }
 seq_argss_ = {
     URI1: [1,drone1_duration[0]],
-    URI2: [2,drone2_duration[0]],
+    #URI2: [2,drone2_duration[0]],
     URI3: [3,drone3_duration[0]],
     URI4: [4,drone4_duration[0]],
-    #URI5: [5,drone5_duration[0]],
+    URI5: [5,drone5_duration[0]],
     #URI6: [6,drone6_duration[0]],
 
 }
 seq_argss_2 = {
-    URI1: [1,drone1_duration[0]],
-    URI2: [2,drone2_duration[0]],
+    URI1: [1,drone1_duration[1]],
+    #URI2: [2,drone2_duration[1]],
     URI3: [3,drone3_duration[1]],
     URI4: [4,drone4_duration[1]],
-    #URI5: [5,drone5_duration[0]],
-    #URI6: [6,drone6_duration[0]],
+    URI5: [5,drone5_duration[1]],
+    #URI6: [6,drone6_duration[1]],
 
 }
 
 # List of URIs, comment the one you do not want to fly
 uris = {
    URI1,
-     URI2,
+    #URI2,
     URI3,
      URI4,
-    #URI5,
+    URI5,
    # URI6,
 
 }
@@ -121,6 +121,8 @@ def upload_trajectory(scf, trajectory_id, trajectory):
         mems = scf.cf.mem.get_mems(MemoryElement.TYPE_TRAJ)
         if not mems:
             print(f"[{scf.cf.link_uri}] No trajectory memory found!")
+            if iterr==2:
+                commander.land(0.0, 2.0)
             return
         trajectory_mem = mems[0]
         trajectory_mem.trajectory = []
@@ -163,15 +165,16 @@ def run_trajectory(scf, trajectory_id, duration):
         if iterr==1:
             commander.takeoff(0.5, 2.0)
             time.sleep(3.0)
-        commander.start_trajectory(trajectory_id, 2, False)
-        print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration:.1f}s")
-        time.sleep(duration*2)
+        commander.start_trajectory(trajectory_id, 2.5, False)
+        duration_=duration*2.5
+        print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration_:.1f}s")
+        time.sleep(duration*2.5)
        
         if iterr==2:
                 commander.land(0.0, 2.0)
                 time.sleep(3.0)
                 commander.stop()
-        else:  commander.go_to(0, 0, 0.01, 0, 1, relative=True, linear=True)
+        else:  commander.go_to(0, 0, 0.01, 0, 0.5, relative=True, linear=True)
              
     except Exception as e:
         print(f"[{scf.cf.link_uri}] ERROR uploading trajectory: {e}")
