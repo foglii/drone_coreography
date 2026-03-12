@@ -37,27 +37,27 @@ iterr= 1
 # dronee5.loadcsv('drone5.csv')
 # dronee6= uav_trajectory.Trajectory()
 # dronee6.loadcsv('drone6.csv')
-drone1_txt = np.loadtxt('part1.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone1_txt = np.loadtxt('part1_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone1=drone1_txt[:len(drone1_txt)//2].tolist()
 drone1_2=drone1_txt[len(drone1_txt)//2+1:].tolist()
 drone1_duration = [np.sum(np.array(drone1)[:,0]), np.sum(np.array(drone1_2)[:,0])]
-drone2_txt = np.loadtxt('part2.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone2_txt = np.loadtxt('part2_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone2=drone2_txt[:len(drone2_txt)//2].tolist()
 drone2_2=drone2_txt[len(drone2_txt)//2+1:].tolist()
 drone2_duration = [np.sum(np.array(drone2)[:,0]), np.sum(np.array(drone2_2)[:,0])]
-drone3_txt = np.loadtxt('part3.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone3_txt = np.loadtxt('part3_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone3=drone3_txt[:len(drone3_txt)//2].tolist()
 drone3_2=drone3_txt[len(drone3_txt)//2:].tolist()
 drone3_duration = [np.sum(np.array(drone3)[:,0]), np.sum(np.array(drone3_2)[:,0])]
-drone4_txt = np.loadtxt('part4.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone4_txt = np.loadtxt('part4_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone4=drone4_txt[:len(drone4_txt)//2].tolist()
 drone4_2=drone4_txt[len(drone4_txt)//2+1:].tolist()
 drone4_duration = [np.sum(np.array(drone4)[:,0]), np.sum(np.array(drone4_2)[:,0])]
-drone5_txt = np.loadtxt('part5.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone5_txt = np.loadtxt('part5_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone5=drone5_txt[:len(drone5_txt)//2].tolist()
 drone5_2=drone5_txt[len(drone5_txt)//2+1:].tolist()
 drone5_duration = [np.sum(np.array(drone5)[:,0]), np.sum(np.array(drone5_2)[:,0])]
-drone6_txt = np.loadtxt('part6.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
+drone6_txt = np.loadtxt('part6_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone6=drone6_txt[:len(drone6_txt)//2].tolist()
 drone6_2=drone6_txt[len(drone6_txt)//2+1:].tolist()
 drone6_duration = [np.sum(np.array(drone6)[:,0]), np.sum(np.array(drone6_2)[:,0])]
@@ -165,10 +165,10 @@ def run_trajectory(scf, trajectory_id, duration):
         if iterr==1:
             commander.takeoff(0.5, 2.0)
             time.sleep(3.0)
-        commander.start_trajectory(trajectory_id, 2.5, False)
-        duration_=duration*2.5
+        commander.start_trajectory(trajectory_id, 2.25, False)
+        duration_=duration*2.25
         print(f"[{scf.cf.link_uri}] Running trajectory {trajectory_id} for {duration_:.1f}s")
-        time.sleep(duration*2.5)
+        time.sleep(duration*2.25+1)
        
         if iterr==2:
                 commander.land(0.0, 2.0)
