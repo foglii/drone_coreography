@@ -25,18 +25,7 @@ URI5 = 'radio://0/100/2M/E7E7E7E7E5'
 
 global iterr
 iterr= 1
-# dronee1= uav_trajectory.Trajectory()
-# dronee1.loadcsv('drone1.csv')
-# dronee2= uav_trajectory.Trajectory()
-# dronee2.loadcsv('drone2.csv')
-# dronee3= uav_trajectory.Trajectory()
-# dronee3.loadcsv('drone3.csv')
-# dronee4= uav_trajectory.Trajectory()
-# dronee4.loadcsv('drone4.csv')
-# dronee5= uav_trajectory.Trajectory()
-# dronee5.loadcsv('drone5.csv')
-# dronee6= uav_trajectory.Trajectory()
-# dronee6.loadcsv('drone6.csv')
+
 drone1_txt = np.loadtxt('part1_.csv', delimiter=",", skiprows=1, usecols=range(33), ndmin=2)
 drone1=drone1_txt[:len(drone1_txt)//2].tolist()
 drone1_2=drone1_txt[len(drone1_txt)//2+1:].tolist()
@@ -208,8 +197,7 @@ if __name__ == '__main__':
 
             # Upload trajectories to each Crazyflie
             durations = swarm.parallel_safe(upload_trajectory, args_dict=seq_args_)
-           # durations=[30.3,30.3,30.3,30.3]
-           # print("Durations:", durations)
+
               
             # Wait before flight
             time.sleep(3.0)
